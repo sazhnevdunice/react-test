@@ -18,7 +18,6 @@ class App extends Component {
   
   render() {
     const self = this;
-    console.log('render App')
 
     return (
       <div className="App">
