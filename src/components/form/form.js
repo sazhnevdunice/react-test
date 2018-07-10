@@ -10,6 +10,8 @@ class Form extends Component {
         "width": 200,
         "height": 200,
         "border-width": 0,
+        "color": null,
+        "float": null,
         "margin-top": 0,
         "margin-right": 0,
         "margin-bottom": 0,
@@ -24,6 +26,8 @@ class Form extends Component {
         "width": 0,
         "height": 0,
         "border-width": 0,
+        "color": null,
+        "float": null,
         "margin-top": 0,
         "margin-right": 0,
         "margin-bottom": 0,
@@ -43,17 +47,20 @@ class Form extends Component {
     const newState = {
       style: {
         ...this.state.style,
-        
       },
       rawStyle: {
         ...this.state.rawStyle,
-      }
+      },
+    };
+    if (["color", "float"].indexOf(id) != -1) {
+      newState.style[id] = event.target.value
     }
+    else {
+      newState.style[id] = event.target.value+'px';
+    }
+    newState.rawStyle[id] = event.target.value;
 
-    newState.style[id] = event.target.value+'px'
-    newState.rawStyle[id] = event.target.value
-
-    this.props.onChange(newState.style)
+    this.props.onChange(newState.style);
 
     this.setState(newState);
 
@@ -70,6 +77,7 @@ class Form extends Component {
 
 	      <p>border-width: <input type="text"  value={this.state.rawStyle.value} onChange={this.handleChange.bind(null, "border-width")} /></p>
 
+        <p>color: <input type="text"  value={this.state.rawStyle.value} onChange={this.handleChange.bind(null, "color")} /></p>
         <p>float: <input type="text"  value={this.state.rawStyle.value} onChange={this.handleChange.bind(null, "float")} /></p>
 
 	      <p>margin-top: <input type="text" value={this.state.rawStyle.value} onChange={this.handleChange.bind(null, "margin-top")} /></p>

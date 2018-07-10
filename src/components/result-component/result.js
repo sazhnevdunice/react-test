@@ -7,6 +7,7 @@ class Result extends Component {
       }
 
     render() {
+        console.log(this.props.myStyle)
     
         return (
             <div className="result-wrapper" style={this.props.myStyle}>
